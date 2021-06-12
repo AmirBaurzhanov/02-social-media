@@ -1,0 +1,29 @@
+/* Navbar Section  */
+
+.section {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #47597e;
+    opacity: 0;
+    transition: .2s linear;
+}
+
+.section:hover {
+    opacity: .9;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+}
+
+.item {
+    color: #fff;
+    text-decoration: none;
+    transition: .2s linear;
+}
+
+.item:hover {
+    color: #2c2c2c;
+}

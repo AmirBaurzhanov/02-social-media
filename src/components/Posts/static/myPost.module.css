@@ -1,0 +1,30 @@
+/* Profile Section */
+
+.section {
+    position: relative;
+}
+
+.avatar button{
+    width: 225px;
+}
+
+.image {
+    max-width: 225px;
+    width: 100%;
+    max-height: 225px;
+    height: 100%;
+}
+
+.info {
+    position: absolute;
+    top: 10%;
+    left: 35%;
+}
+
+.list {
+    list-style-type: none;
+}
+
+.item {
+    padding-bottom: 10px;
+}
