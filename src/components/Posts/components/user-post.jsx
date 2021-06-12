@@ -1,6 +1,6 @@
 import u from '../static/user-post.module.css';
 
-const Upost = () => {
+const User = () => {
     return (
         <div>
             <section className="user-post__section pt-4">
@@ -28,4 +28,4 @@ const Upost = () => {
     )
 }
 
-export default Upost;
+export default User;

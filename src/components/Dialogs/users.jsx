@@ -1,6 +1,6 @@
 import c from './static/users.module.css'
 
-const Users = () => {
+const Users = (props) => {
     return (
         <div>
             <section className={c.active}>

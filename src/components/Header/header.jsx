@@ -1,4 +1,5 @@
 import h from './static/header.module.css';
+import Navbar from "./navbar";
 
 
 const Header = () => {

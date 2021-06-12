@@ -1,6 +1,6 @@
 import p from './static/myPost.module.css';
-import Npost from "./components/new-post";
-import Upost from "./components/user-post";
+import New from "./components/new-post";
+import User from "./components/user-post";
 
 
 const Post = () => {
@@ -25,8 +25,8 @@ const Post = () => {
                     </div>
                 </div>
             </section>
-            <Npost/>
-            <Upost/>
+            <New/>
+            <User/>
         </div>
     )
 }

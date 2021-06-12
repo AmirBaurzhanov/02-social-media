@@ -1,4 +1,4 @@
-const Npost = () => {
+const New = () => {
     return (
         <div>
             <section className="my-posts__section pt-4">
@@ -9,10 +9,9 @@ const Npost = () => {
                         </h1>
                         <div className="post-form">
                             <p>
-                                <textarea name="text" placeholder="Ваше сообщение" cols="50" rows="4"
-                                          className="textarea"></textarea>
+                                <textarea placeholder="Ваше сообщение" cols="50" rows="4"></textarea>
                             </p>
-                            <button className="btn btn-outline-primary" onClick="deleteButton()">Написать</button>
+                            <button className="btn btn-outline-primary">Написать</button>
                         </div>
                     </div>
                 </div>
@@ -20,4 +19,4 @@ const Npost = () => {
         </div>
     );
 }
-export default Npost;
+export default New;
