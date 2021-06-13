@@ -1,0 +1,23 @@
+.dialogs {
+    display: grid;
+    grid-template-areas: "d d d"
+    "m m m";
+}
+
+.dialog {
+    grid-area: d;
+}
+
+.navLink {
+    color: #2c2c2c;
+    text-decoration: none;
+    transition: .2s linear;
+}
+
+.navLink:hover {
+    color: #47a7e9;
+}
+
+.message {
+    grid-area: m;
+}

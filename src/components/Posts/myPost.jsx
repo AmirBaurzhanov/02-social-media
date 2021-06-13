@@ -2,6 +2,16 @@ import p from './static/myPost.module.css';
 import New from "./components/new-post";
 import User from "./components/user-post";
 
+const ProfileInfo = (props) => {
+    return (
+        <div className={p.info}>
+            <h2>{props.name}</h2>
+            <ul className={p.list}>
+                <li className={p.item}>{props.info}</li>
+            </ul>
+        </div>
+    )
+}
 
 const Post = () => {
     return (
@@ -13,15 +23,7 @@ const Post = () => {
                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQr-j7o2xWexDTosmQob_PpHPn-F9Bjw5gVQ&usqp=CAU"/>
                         <br/>
                         <button className="btn btn-outline-primary">Изменить</button>
-                        <div className={p.info}>
-                            <h2>Amir Baurzhanov</h2>
-                            <ul className={p.list}>
-                                <li className={p.item}>Дата рождения: 22.07.2006</li>
-                                <li className={p.item}>Дата рождения: 22.07.2006</li>
-                                <li className={p.item}>Дата рождения: 22.07.2006</li>
-                                <li className={p.item}>Дата рождения: 22.07.2006</li>
-                            </ul>
-                        </div>
+                        <ProfileInfo info="Дата рождения: 22.07.2006" name="Amir Baurzhanov" />
                     </div>
                 </div>
             </section>
