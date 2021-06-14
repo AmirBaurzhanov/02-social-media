@@ -23,3 +23,12 @@
     top: 39%;
     left: 15%;
 }
+
+.like {
+    padding-left: 20px;
+    transition: .2s linear;
+}
+
+.like:hover {
+    color: red;
+}

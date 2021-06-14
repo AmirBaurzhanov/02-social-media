@@ -1,6 +1,6 @@
 import p from './static/myPost.module.css';
-import New from "./components/new-post";
-import User from "./components/user-post";
+import u from './static/user-post.module.css';
+import User from "./Post";
 
 const ProfileInfo = (props) => {
     return (
@@ -27,8 +27,7 @@ const Post = () => {
                     </div>
                 </div>
             </section>
-            <New/>
-            <User/>
+            <User />
         </div>
     )
 }
