@@ -1,5 +1,5 @@
-import p from "./static/myPost.module.css";
-import u from "./static/user-post.module.css";
+import p from "../static/myPost.module.css";
+import u from "../static/user-post.module.css";
 
 
 const PostWrite = () => {
@@ -28,7 +28,8 @@ const Post = (props) => {
             <div className={u.info}>
                 <div className={u.avatar}>
                     <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQr-j7o2xWexDTosmQob_PpHPn-F9Bjw5gVQ&usqp=CAU"/>
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQr-j7o2xWexDTosmQob_PpHPn-F9Bjw5gVQ&usqp=CAU"
+                        alt="logo"/>
                 </div>
                 <div className={u.name}>
                     <h4>
@@ -41,24 +42,28 @@ const Post = (props) => {
                 <div className={u.like}>
                     <i className="far fa-heart"></i> - {props.likeCount}
                 </div>
-            </div> <br/>
+            </div>
+            <br/>
         </div>
     )
 }
 
-const User = () => {
 
+const PostInfo = (props) => {
     let postsData = [
-        {id: '1', name: 'Amir', text: 'Hi!', likeCount: 20},
+        {id: '1', name: 'Amir', text: 'Hi! lorem ipsum dolor sit amet', likeCount: 20},
         {id: '2', name: 'Dimych', text: 'How are you?', likeCount: 20},
     ]
 
     let posts = postsData
-        .map( (posts) =>  <Post name={posts.name} text={posts.text} likeCount={posts.likeCount}/>)
+        .map((posts) =>
+            <Post name={posts.name} text={posts.text} likeCount={posts.likeCount}/>
+        );
 
     return (
         <div>
-            <PostWrite />
+            <PostWrite/>
+            <Post />
             <section className="user-post__section pt-4">
                 <div className="wrapper">
                     {posts}
@@ -67,5 +72,4 @@ const User = () => {
         </div>
     )
 }
-
-export default User;
+export default PostInfo;
