@@ -2,13 +2,13 @@ import ProfileInfo from "./components/ProfileInfo";
 import PostInfo from "./components/Post";
 
 
-const Posts = () => {
+const Profile = (props) => {
     return (
         <div>
             <ProfileInfo/>
-            <PostInfo/>
+            <PostInfo postsData={props.postsData}/>
         </div>
     )
 }
 
-export default Posts;
+export default Profile;
