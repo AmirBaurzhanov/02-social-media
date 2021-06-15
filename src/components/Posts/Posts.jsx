@@ -3,10 +3,11 @@ import PostInfo from "./components/Post";
 
 
 const Profile = (props) => {
+
     return (
         <div>
             <ProfileInfo/>
-            <PostInfo postsData={props.postsData}/>
+            <PostInfo postsData={props.data.postsData}/>
         </div>
     )
 }
