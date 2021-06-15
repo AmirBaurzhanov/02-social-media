@@ -48,22 +48,14 @@ const Post = (props) => {
     )
 }
 
-
 const PostInfo = (props) => {
-    let postsData = [
-        {id: '1', name: 'Amir', text: 'Hi! lorem ipsum dolor sit amet', likeCount: 20},
-        {id: '2', name: 'Dimych', text: 'How are you?', likeCount: 20},
-    ]
-
-    let posts = postsData
+    let posts = props.postsData
         .map((posts) =>
             <Post name={posts.name} text={posts.text} likeCount={posts.likeCount}/>
         );
-
     return (
         <div>
             <PostWrite/>
-            <Post />
             <section className="user-post__section pt-4">
                 <div className="wrapper">
                     {posts}
