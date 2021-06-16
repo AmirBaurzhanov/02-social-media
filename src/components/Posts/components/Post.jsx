@@ -33,6 +33,7 @@ const PostInfo = (props) => {
     let postWrite = () => {
         let text = textAreaElement.current.value;
         props.addPost(text)
+        textAreaElement.current.value = '';
     }
 
     let textAreaElement = React.createRef();
