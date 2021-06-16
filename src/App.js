@@ -13,7 +13,7 @@ const App = (props) => {
                 <Navbar/>
                 <div>
                     <Route exact path='/messages' render={() => <Dialogs data={props.state.dialogsPage}/>}/>
-                    <Route exact path='/profile' render={ () => <Profile data={props.state.profilePage} />}/>
+                    <Route exact path='/profile' render={ () => <Profile data={props.state.profilePage} addPost={props.addPost} />}/>
                 </div>
             </div>
         </BrowserRouter>

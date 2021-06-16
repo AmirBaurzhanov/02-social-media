@@ -22,4 +22,15 @@ let state = {
     }
 }
 
+export let addPost = (postMessage) => {
+    let getLastChild = state.profilePage.postsData
+    let newPost = {
+        id: 3,
+        name: 'User',
+        text: postMessage,
+        likeCount: 0
+    }
+    state.profilePage.postsData.push(newPost)
+}
+
 export default state;
