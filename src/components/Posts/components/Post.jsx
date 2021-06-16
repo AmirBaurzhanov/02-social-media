@@ -1,26 +1,7 @@
 import p from "../static/myPost.module.css";
 import u from "../static/user-post.module.css";
-
-
-const PostWrite = () => {
-    return (
-        <section className="my-posts__section pt-4">
-            <div className="wrapper">
-                <div className="posts">
-                    <h1>
-                        My posts
-                    </h1>
-                    <div className="post-form">
-                        <p>
-                            <textarea placeholder="Ваше сообщение" cols="50" rows="4"></textarea>
-                        </p>
-                        <button className="btn btn-outline-primary">Написать</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    )
-}
+import React from "react";
+import {addPost} from "../../../redux/state";
 
 const Post = (props) => {
     return (
@@ -49,13 +30,35 @@ const Post = (props) => {
 }
 
 const PostInfo = (props) => {
+    let postWrite = () => {
+        let text = textAreaElement.current.value;
+        props.addPost(text)
+    }
+
+    let textAreaElement = React.createRef();
     let posts = props.postsData
         .map((posts) =>
             <Post name={posts.name} text={posts.text} likeCount={posts.likeCount}/>
         );
     return (
         <div>
-            <PostWrite/>
+            <section className="my-posts__section pt-4">
+                <div className="wrapper">
+                    <div className="posts">
+                        <h1>
+                            My posts
+                        </h1>
+                        <div className="post-form">
+                            <p>
+                                <textarea ref={textAreaElement} placeholder="Ваше сообщение" cols="50" rows="4"></textarea>
+                            </p>
+                            <button onClick={postWrite}
+                                    className="btn btn-outline-primary">Написать
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <section className="user-post__section pt-4">
                 <div className="wrapper">
                     {posts}
