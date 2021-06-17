@@ -1,7 +1,6 @@
 import p from "../static/myPost.module.css";
 import u from "../static/user-post.module.css";
 import React from "react";
-import {addPost} from "../../../redux/state";
 
 const Post = (props) => {
     return (
@@ -21,7 +20,7 @@ const Post = (props) => {
                     {props.text}
                 </div>
                 <div className={u.like}>
-                    <i className="far fa-heart"></i> - {props.likeCount}
+                    <i className="far fa-heart"></i> {props.likeCount}
                 </div>
             </div>
             <br/>
@@ -31,16 +30,19 @@ const Post = (props) => {
 
 const PostInfo = (props) => {
     let postWrite = () => {
-        let text = textAreaElement.current.value;
-        props.addPost(text)
-        textAreaElement.current.value = '';
+        props.dispatch({type: 'ADD-POST'});
     }
 
     let textAreaElement = React.createRef();
-    let posts = props.postsData
+    let posts = props.postsData.postsData
         .map((posts) =>
             <Post name={posts.name} text={posts.text} likeCount={posts.likeCount}/>
         );
+
+    let onPostChange = () => {
+        let text = textAreaElement.current.value;
+        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+    }
     return (
         <div>
             <section className="my-posts__section pt-4">
@@ -51,7 +53,7 @@ const PostInfo = (props) => {
                         </h1>
                         <div className="post-form">
                             <p>
-                                <textarea ref={textAreaElement} placeholder="Ваше сообщение" cols="50" rows="4"></textarea>
+                                <textarea ref={textAreaElement} value={props.postsData.newPostText} onChange={onPostChange} placeholder="Ваше сообщение" cols="50" rows="4" />
                             </p>
                             <button onClick={postWrite}
                                     className="btn btn-outline-primary">Написать
