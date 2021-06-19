@@ -28,6 +28,10 @@ const Messages = (props) => {
                     {messageElements}
                 </div>
             </div>
+            <div className={d.chat}>
+                <textarea name="textarea" cols="90" rows="5" placeholder="Введите сообщение" /> <br/>
+                <button className="btn btn-primary text-center">Отправить</button>
+            </div>
         </div>
     )
 }

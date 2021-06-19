@@ -30,7 +30,7 @@ const Post = (props) => {
 
 const PostInfo = (props) => {
     let postWrite = () => {
-        props.dispatch({type: 'ADD-POST'});
+        props.dispatch((props.ActionCreator('addPost')));
     }
 
     let textAreaElement = React.createRef();
@@ -40,8 +40,9 @@ const PostInfo = (props) => {
         );
 
     let onPostChange = () => {
+
         let text = textAreaElement.current.value;
-        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+        props.dispatch((props.ActionCreator('updateData', text)));
     }
     return (
         <div>

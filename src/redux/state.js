@@ -1,5 +1,6 @@
 // Data
 let store = {
+    // Profile Data
 
     _state: {
         profilePage: {
@@ -52,7 +53,23 @@ let store = {
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._updateNewPostText(action.newText)
         }
+    },
+    ActionCreator (type, message) {
+        if (type === 'addPost') {
+            let action = {
+                type: 'ADD-POST'
+            }
+            return action
+        } else if (type === 'updateData') {
+            let action = {
+                type: 'UPDATE-NEW-POST-TEXT',
+                newText: message,
+            }
+            return action
+        }
     }
+    // Messages Data
+
 
 }
 
