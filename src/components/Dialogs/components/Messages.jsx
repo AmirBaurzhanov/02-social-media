@@ -1,5 +1,6 @@
 import d from '../static/messages.module.css'
 import Dialog from './Dialog'
+import React from "react";
 
 const Message = (props) => {
     return (
@@ -8,16 +9,24 @@ const Message = (props) => {
 }
 
 const Messages = (props) => {
-
-    let messageElements = props.messagesData
+    let messageElements = props.dialogsData.messagesData
         .map((message) =>
             <Message message={message.message}/>
         );
 
-    let dialogElements = props.dialogsData
+    let dialogElements = props.dialogsData.dialogsData
         .map((dialog) =>
             <Dialog name={dialog.name} id={dialog.id}/>
         );
+
+    let onSendMessageClick = () => {
+        props.dispatch((props.ActionCreator('addMessage')));
+    }
+
+    let onNewMessageChange = (e) => {
+        let text = e.target.value;
+        props.dispatch((props.ActionCreator('updateMessage', text)));
+    }
     return (
         <div className="wrapper">
             <div className={d.dialogs}>
@@ -29,8 +38,8 @@ const Messages = (props) => {
                 </div>
             </div>
             <div className={d.chat}>
-                <textarea name="textarea" cols="90" rows="5" placeholder="Введите сообщение" /> <br/>
-                <button className="btn btn-primary text-center">Отправить</button>
+                <textarea value={props.dialogsData.newMessageText} name="textarea" onChange={onNewMessageChange} cols="90" rows="5" placeholder="Введите сообщение"/> <br/>
+                <button onClick={onSendMessageClick} className="btn btn-primary text-center">Отправить</button>
             </div>
         </div>
     )

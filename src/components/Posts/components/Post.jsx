@@ -29,20 +29,18 @@ const Post = (props) => {
 }
 
 const PostInfo = (props) => {
-    let postWrite = () => {
-        props.dispatch((props.ActionCreator('addPost')));
-    }
 
-    let textAreaElement = React.createRef();
     let posts = props.postsData.postsData
         .map((posts) =>
             <Post name={posts.name} text={posts.text} likeCount={posts.likeCount}/>
         );
+    let onSendPostClick = () => {
+        props.dispatch((props.ActionCreator('addPost')));
+    }
 
-    let onPostChange = () => {
-
-        let text = textAreaElement.current.value;
-        props.dispatch((props.ActionCreator('updateData', text)));
+    let onPostChange = (e) => {
+        let text = e.target.value;
+        props.dispatch((props.ActionCreator('updatePost', text)));
     }
     return (
         <div>
@@ -54,9 +52,9 @@ const PostInfo = (props) => {
                         </h1>
                         <div className="post-form">
                             <p>
-                                <textarea ref={textAreaElement} value={props.postsData.newPostText} onChange={onPostChange} placeholder="Ваше сообщение" cols="50" rows="4" />
+                                <textarea value={props.postsData.newPostText} onChange={onPostChange} placeholder="Ваше сообщение" cols="50" rows="4" />
                             </p>
-                            <button onClick={postWrite}
+                            <button onClick={onSendPostClick}
                                     className="btn btn-outline-primary">Написать
                             </button>
                         </div>

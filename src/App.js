@@ -12,7 +12,7 @@ const App = (props) => {
                 <Header/>
                 <Navbar/>
                 <div>
-                    <Route exact path='/messages' render={() => <Dialogs data={props.state.dialogsPage}/>}/>
+                    <Route exact path='/messages' render={() => <Dialogs data={props.state.dialogsPage} dispatch={props.dispatch} ActionCreator={props.ActionCreator}/>}/>
                     <Route exact path='/profile' render={() => <Profile data={props.state.profilePage} dispatch={props.dispatch} ActionCreator={props.ActionCreator}/>}/>
                 </div>
             </div>
