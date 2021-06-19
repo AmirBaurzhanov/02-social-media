@@ -40,15 +40,12 @@ let store = {
         this._state.profilePage.newPostText = newText;
         this._rerenderEntireTree(this._state);
     },
-
-
     getState() {
         return this._state;
     },
     subscribe(observer) {
         this._rerenderEntireTree = observer;  // Наблюдатель паттерн
     },
-
     dispatch(action) {  // {  Type: 'ADD-POST'  }
         if (action.type === 'ADD-POST') {
             this._addPost()
@@ -56,6 +53,8 @@ let store = {
             this._updateNewPostText(action.newText)
         }
     }
+
 }
+
 
 export default store;
