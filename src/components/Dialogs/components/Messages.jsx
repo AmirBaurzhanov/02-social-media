@@ -39,7 +39,7 @@ const Messages = (props) => {
             </div>
             <div className={d.chat}>
                 <textarea value={props.dialogsData.newMessageText} name="textarea" onChange={onNewMessageChange} cols="90" rows="5" placeholder="Введите сообщение"/> <br/>
-                <button onClick={onSendMessageClick} className="btn btn-primary text-center">Отправить</button>
+                <button onClick={onSendMessageClick} className="btn btn-outline-primary text-center">Отправить</button>
             </div>
         </div>
     )

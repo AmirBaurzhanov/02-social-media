@@ -1,6 +1,9 @@
 // Data
-let store = {
 
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+
+let store = {
     _state: {
         profilePage: {
             postsData: [
@@ -32,33 +35,14 @@ let store = {
         this._rerenderEntireTree = observer;  // Наблюдатель паттерн
     },
     dispatch(action) {  // {  Type: 'ADD-POST'  }
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: 3,
-                name: 'User',
-                text: this._state.profilePage.newPostText,
-                likeCount: 0
-            };
-            this._state.profilePage.postsData.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._rerenderEntireTree(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._rerenderEntireTree(this._state);
-        } else if (action.type === 'ADD-MESSAGE') {
-            let newMessage = {
-                id: 4,
-                message: this._state.dialogsPage.newMessageText
-            }
-            this._state.dialogsPage.messagesData.push(newMessage);
-            this._state.dialogsPage.newMessageText = '';
-            this._rerenderEntireTree(this._state)
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.newMessage;
-            this._rerenderEntireTree(this._state)
-        }
+        // ProfileReducer Zone
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        // DialogsReducer Zone
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+
+        this._rerenderEntireTree(this._state);
     },
-    ActionCreator (type, message) {
+    ActionCreator(type, message) {
         if (type === 'addPost') {
             const action = {
                 type: 'ADD-POST'
@@ -82,7 +66,8 @@ let store = {
             }
             return action
         }
-    }
+    },
 }
+
 
 export default store;
