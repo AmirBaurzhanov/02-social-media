@@ -1,6 +1,7 @@
 import p from "../static/myPost.module.css";
 import u from "../static/user-post.module.css";
 import React from "react";
+import {actionCreator} from "../../../redux/profileReducer";
 
 const Post = (props) => {
     return (
@@ -35,12 +36,12 @@ const PostInfo = (props) => {
             <Post name={posts.name} text={posts.text} likeCount={posts.likeCount}/>
         );
     let onSendPostClick = () => {
-        props.dispatch((props.ActionCreator('addPost')));
+        props.dispatch((actionCreator('addPost')));
     }
 
     let onPostChange = (e) => {
         let text = e.target.value;
-        props.dispatch((props.ActionCreator('updatePost', text)));
+        props.dispatch((actionCreator('updatePost', text)));
     }
     return (
         <div>

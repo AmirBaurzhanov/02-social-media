@@ -1,6 +1,13 @@
-const profileReducer = (state, action) => {
+let defaultReducer = {
+    postsData: [
+        {id: '1', name: 'Amir', text: 'Hi! lorem ipsum dolor sit amet', likeCount: 20},
+        {id: '2', name: 'Dimych', text: 'How are you?', likeCount: 20},],
+    newPostText: '',
+}
+
+const profileReducer = (state = defaultReducer, action) => {
     switch (action.type) {
-        case action.type === 'ADD-POST':
+        case 'ADD-POST':
             let newPost = {
                 id: 3,
                 name: 'User',
@@ -10,7 +17,7 @@ const profileReducer = (state, action) => {
             state.postsData.push(newPost);
             state.newPostText = '';
             return state
-        case action.type === 'UPDATE-NEW-POST-TEXT':
+        case 'UPDATE-NEW-POST-TEXT':
             state.newPostText = action.newText;
             return state
         default:
@@ -18,4 +25,18 @@ const profileReducer = (state, action) => {
     }
 }
 
+export let actionCreator = (type, message) => {
+    if (type === 'addPost') {
+        const action = {
+            type: 'ADD-POST'
+        }
+        return action
+    } else if (type === 'updatePost') {
+        const action = {
+            type: 'UPDATE-NEW-POST-TEXT',
+            newText: message,
+        }
+        return action
+    }
+}
 export default profileReducer;

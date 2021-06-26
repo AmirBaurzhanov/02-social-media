@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+./src/redux/store.js
 
 # testing
 /coverage
