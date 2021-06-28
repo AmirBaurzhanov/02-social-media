@@ -13,8 +13,8 @@ const App = (props) => {
                 <Header/>
                 <Navbar/>
                 <div>
-                    <Route exact path='/messages' render={() => <Dialogs store={props.store}/>}/>
-                    <Route exact path='/profile' render={() => <Profile store={props.store}/>}/>
+                    <Route exact path='/messages' render={() => <Dialogs/>}/>
+                    <Route exact path='/profile' render={() => <Profile/>}/>
                 </div>
             </div>
         </BrowserRouter>
