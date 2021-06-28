@@ -1,4 +1,4 @@
-let defaultReducer = {
+let initialState = {
     dialogsData: [
         {id: '1', name: 'Amir'},
         {id: '2', name: 'Dymich'},
@@ -14,7 +14,7 @@ let defaultReducer = {
 }
 
 
-const dialogsReducer = (state = defaultReducer, action) => {
+const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD-MESSAGE':
             let newMessage = {
@@ -33,7 +33,7 @@ const dialogsReducer = (state = defaultReducer, action) => {
 }
 
 export let actionCreator = (type, message) => {
-     if (type === 'addMessage') {
+    if (type === 'addMessage') {
         const action = {
             type: 'ADD-MESSAGE'
         }

@@ -1,12 +1,12 @@
 import ProfileInfo from "./components/ProfileInfo";
-import PostInfo from "./components/Post";
+import PostsContainer from "./components/PostContainer";
 
 
 const Profile = (props) => {
     return (
         <div>
             <ProfileInfo/>
-            <PostInfo postsData={props.data} dispatch={props.dispatch}/>
+            <PostsContainer store={props.store}/>
         </div>
     )
 }

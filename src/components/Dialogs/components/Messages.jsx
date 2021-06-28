@@ -1,7 +1,6 @@
 import d from '../static/messages.module.css'
 import Dialog from './Dialog'
 import React from "react";
-import {actionCreator} from "../../../redux/dialogsReducer";
 
 const Message = (props) => {
     return (
@@ -21,12 +20,12 @@ const Messages = (props) => {
         );
 
     let onSendMessageClick = () => {
-        props.dispatch((actionCreator('addMessage')));
+        props.onSendMessageClick()
     }
 
     let onNewMessageChange = (e) => {
-        let text = e.target.value;
-        props.dispatch((actionCreator('updateMessage', text)));
+        let body = e.target.value;
+        props.onNewMessageChange(body)
     }
     return (
         <div className="wrapper">

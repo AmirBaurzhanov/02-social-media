@@ -1,7 +1,6 @@
 import p from "../static/myPost.module.css";
 import u from "../static/user-post.module.css";
 import React from "react";
-import {actionCreator} from "../../../redux/profileReducer";
 
 const Post = (props) => {
     return (
@@ -31,17 +30,17 @@ const Post = (props) => {
 
 const PostInfo = (props) => {
 
-    let posts = props.postsData.postsData
+    let posts = props.postsData
         .map((posts) =>
             <Post name={posts.name} text={posts.text} likeCount={posts.likeCount}/>
         );
     let onSendPostClick = () => {
-        props.dispatch((actionCreator('addPost')));
+        props.sendPostClick()
     }
 
     let onPostChange = (e) => {
-        let text = e.target.value;
-        props.dispatch((actionCreator('updatePost', text)));
+        let body = e.target.value;
+        props.onPostChange(body)
     }
     return (
         <div>
@@ -53,7 +52,7 @@ const PostInfo = (props) => {
                         </h1>
                         <div className="post-form">
                             <p>
-                                <textarea value={props.postsData.newPostText} onChange={onPostChange} placeholder="Ваше сообщение" cols="50" rows="4" />
+                                <textarea value={props.newPostText} onChange={onPostChange} placeholder="Ваше сообщение" cols="50" rows="4" />
                             </p>
                             <button onClick={onSendPostClick}
                                     className="btn btn-outline-primary">Написать
