@@ -1,29 +1,24 @@
 import {actionCreator} from "../../../redux/profileReducer";
 import PostInfo from "./Post";
-import StoreContext from "../../../storeContext";
+import {connect} from "react-redux";
 
-// Dirty Dirty
-
-const PostsContainer = (props) => {
-    return (
-        <div>
-            <StoreContext.Consumer>{
-                (store) => {
-                    let state = store.getState();
-                    let sendPostClick = () => {
-                        store.dispatch((actionCreator('addPost')))
-                    }
-                    let onPostChange = (body) => {
-                        store.dispatch((actionCreator('updatePost', body)))
-                    }
-                    return (
-                    <PostInfo sendPostClick={sendPostClick} onPostChange={onPostChange}
-                              postsData={state.profilePage.postsData}/>)
-                }
-            }
-            </StoreContext.Consumer>
-        </div>
-    )
+let mapStateToProps = (state) => {
+    return {
+        postsData: state.profilePage.postsData
+    }
 }
 
-export default PostsContainer;
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onPostChange(body) {
+            dispatch((actionCreator('updatePost', body)))
+        },
+        sendPostClick() {
+            dispatch((actionCreator('addPost')))
+        }
+    }
+}
+
+const postContainer = connect(mapStateToProps, mapDispatchToProps)(PostInfo);
+
+export default postContainer;
