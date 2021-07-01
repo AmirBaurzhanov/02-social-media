@@ -11,12 +11,12 @@ const Message = (props) => {
 const Messages = (props) => {
     let messageElements = props.dialogsData.messagesData
         .map((message) =>
-            <Message message={message.message}/>
+            <Message message={message.message} key={message.id}/>
         );
 
     let dialogElements = props.dialogsData.dialogsData
         .map((dialog) =>
-            <Dialog name={dialog.name} id={dialog.id}/>
+            <Dialog name={dialog.name} key={dialog.id} id={dialog.id}/>
         );
 
     let onSendMessageClick = () => {

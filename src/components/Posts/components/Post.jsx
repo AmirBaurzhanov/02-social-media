@@ -30,9 +30,9 @@ const Post = (props) => {
 
 const PostInfo = (props) => {
 
-    let posts = props.postsData
+    let posts = props.postsData.postsData
         .map((posts) =>
-            <Post name={posts.name} text={posts.text} likeCount={posts.likeCount}/>
+            <Post name={posts.name} key={posts.id} text={posts.text} likeCount={posts.likeCount}/>
         );
     let onSendPostClick = () => {
         props.sendPostClick()
@@ -52,7 +52,7 @@ const PostInfo = (props) => {
                         </h1>
                         <div className="post-form">
                             <p>
-                                <textarea value={props.newPostText} onChange={onPostChange} placeholder="Ваше сообщение" cols="50" rows="4" />
+                                <textarea value={props.postsData.newPostText} onChange={onPostChange} placeholder="Ваше сообщение" cols="50" rows="4" />
                             </p>
                             <button onClick={onSendPostClick}
                                     className="btn btn-outline-primary">Написать
