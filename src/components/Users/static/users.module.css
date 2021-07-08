@@ -1,0 +1,33 @@
+/* New Post  */
+
+.usersList {
+    border: 1px solid #2c2c2c;
+    display: grid;
+    position: relative;
+}
+
+.usersList img{
+    width: 130px;
+}
+
+.usersList button {
+    position: absolute;
+    top: 24%;
+    left: 13%;
+    display: block;
+}
+
+
+.userName {
+    position: absolute;
+    top: 0%;
+    left: 12%;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.userText {
+    position: absolute;
+    top: 39%;
+    left: 15%;
+}

@@ -1,22 +1,25 @@
-import u from '../static/users.module.css'
+import {connect} from "react-redux";
+import {followAC, setUsersAC, unFollowAC} from "../../../redux/usersReducer";
+import UsersList from "./usersList";
 
-const UsersList = (props) => {
-    return (
-        <div className="container">
-            <ul className="usersList">
-                <li className={u.usersList}>
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQr-j7o2xWexDTosmQob_PpHPn-F9Bjw5gVQ&usqp=CAU"
-                        alt="icon"/>
-                    <h4 className={u.userName}>{props.name}</h4>
-                    <p className={u.userText}>{props.text}</p>
-                    <button className="btn btn-success mt-5">
-                        Follow
-                    </button>
-                </li>
-            </ul>
-        </div>
-    )
+let mapStateToProps = (state) => {
+    return {
+        users: state.usersPage.users
+    }
 }
 
-export default UsersList;
+let mapDispatchToProps = (dispatch) => {
+    return {
+        follow: (userId) => {
+            dispatch(followAC(userId));
+        },
+        unFollow: (userId) => {
+            dispatch(unFollowAC(userId));
+        },
+        setUsers: (users) => {
+            dispatch(setUsersAC(users));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UsersList);

@@ -1,49 +1,69 @@
+const FOLLOW = 'FOLLOW';
+const UNFOLLOW = 'UNFOLLOW';
+const SET_USERS = 'SET_USERS';
+
 let initialState = {
-    postsData: [
-        {id: '1', name: 'Amir', text: 'Hi! lorem ipsum dolor sit amet', likeCount: 20},
-        {id: '2', name: 'Dimych', text: 'How are you?', likeCount: 20},],
-    newPostText: '',
+    users: [ 
+        //{
+        //     id: '1',
+        //     fullName: 'Amir',
+        //     status: 'Programist',
+        //     location: { city: 'Nur-Sultan', country: 'Kazakhstan' },
+        //     isFriend: true,
+        //     photoURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQr-j7o2xWexDTosmQob_PpHPn-F9Bjw5gVQ&usqp=CAU'
+        // },
+        // {
+        //     id: '2',
+        //     fullName: 'Sasha',
+        //     status: 'LOX',
+        //     location: { city: 'Moscow', country: 'Russia' },
+        //     isFriend: true,
+        //     photoURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQr-j7o2xWexDTosmQob_PpHPn-F9Bjw5gVQ&usqp=CAU'
+        // },
+        // {
+        //     id: '3',
+        //     fullName: 'Sergei',
+        //     status: 'LOX',
+        //     location: { city: 'Kiev', country: 'Ukraine' },
+        //     isFriend: false,
+        //     photoURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQr-j7o2xWexDTosmQob_PpHPn-F9Bjw5gVQ&usqp=CAU'
+        // }
+    ]
 }
 
-const profileReducer = (state = initialState, action) => {
-    let stateCopy;
+const usersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'ADD-POST': {
-            let newPost = {
-                id: 3,
-                name: 'User',
-                text: state.newPostText,
-                likeCount: 0
-            };
-            return stateCopy = {
+        case FOLLOW: {
+            return {
                 ...state,
-                postsData: [...state.postsData, newPost],
-                newPostText: '',
-            };
-        }
-        case 'UPDATE-NEW-POST-TEXT': {
-            return stateCopy = {
-                ...state,
-                newPostText: action.newText
+                users: state.users.map(users => {
+                    if (users.id === action.userId) {
+                        return { ...users, isFriend: true }
+                    }
+                    return users;
+                })
             }
         }
+        case UNFOLLOW:
+            return {
+                ...state,
+                users: state.users.map(users => {
+                    if (users.id === action.userId) {
+                        return { ...users, isFriend: false }
+                    }
+                    return users;
+                })
+            }
+        case SET_USERS:
+            return { ...state, users: [...state.users, ...action.users] }
         default:
             return state
     }
 }
 
-export let actionCreator = (type, message) => {
-    if (type === 'addPost') {
-        const action = {
-            type: 'ADD-POST'
-        }
-        return action
-    } else if (type === 'updatePost') {
-        const action = {
-            type: 'UPDATE-NEW-POST-TEXT',
-            newText: message,
-        }
-        return action
-    }
-}
-export default profileReducer;
+export const followAC = (userId) => ({ type: 'FOLLOW', userId })
+export const unFollowAC = (userId) => ({ type: 'UNFOLLOW', userId })
+export const setUsersAC = (users) => ({ type: 'SET_USERS', users })
+
+
+export default usersReducer;
