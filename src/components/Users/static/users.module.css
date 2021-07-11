@@ -31,3 +31,8 @@
     top: 39%;
     left: 15%;
 }
+
+.selected {
+    font-weight: bold;
+    font-size: 20px;
+}
