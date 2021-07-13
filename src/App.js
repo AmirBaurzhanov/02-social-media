@@ -2,9 +2,9 @@ import './App.css';
 import Header from "./components/Header/header";
 import { BrowserRouter, Route } from "react-router-dom";
 import Navbar from "./components/Header/navbar";
-import Profile from "./components/Posts/Posts";
-import Dialogs from "./components/Dialogs/Dialogs";
-import Users from "./components/Users/Users";
+import ProfileContainer from './components/Posts/PostsContainer';
+import UsersAPIComponent from './components/Users/Components/usersListContainer';
+import {dialogsContainer} from './components/Dialogs/components/MessagesContainer';
 
 
 const App = (props) => {
@@ -14,9 +14,9 @@ const App = (props) => {
                 <Header />
                 <Navbar />
                 <div>
-                    <Route exact path='/messages' render={() => <Dialogs />} />
-                    <Route exact path='/profile' render={() => <Profile />} />
-                    <Route exact path='/users' render={() => <Users />} />
+                    <Route path='/messages' render={() => <dialogsContainer />} />
+                    <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+                    <Route path='/users' render={() => <UsersAPIComponent />} />
                 </div>
             </div>
         </BrowserRouter>

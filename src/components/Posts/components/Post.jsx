@@ -1,4 +1,3 @@
-import p from "../static/myPost.module.css";
 import u from "../static/user-post.module.css";
 import React from "react";
 
@@ -9,7 +8,7 @@ const Post = (props) => {
                 <div className={u.avatar}>
                     <img
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQr-j7o2xWexDTosmQob_PpHPn-F9Bjw5gVQ&usqp=CAU"
-                        alt="logo"/>
+                        alt="logo" />
                 </div>
                 <div className={u.name}>
                     <h4>
@@ -23,7 +22,7 @@ const Post = (props) => {
                     <i className="far fa-heart"></i> {props.likeCount}
                 </div>
             </div>
-            <br/>
+            <br />
         </div>
     )
 }
@@ -32,15 +31,15 @@ const PostInfo = (props) => {
 
     let posts = props.postsData.postsData
         .map((posts) =>
-            <Post name={posts.name} key={posts.id} text={posts.text} likeCount={posts.likeCount}/>
+            <Post name={posts.name} key={posts.id} text={posts.text} likeCount={posts.likeCount} />
         );
     let onSendPostClick = () => {
-        props.sendPostClick()
+        props.addPost()
     }
 
     let onPostChange = (e) => {
         let body = e.target.value;
-        props.onPostChange(body)
+        props.updateNewPostText(body)
     }
     return (
         <div>
@@ -52,10 +51,13 @@ const PostInfo = (props) => {
                         </h1>
                         <div className="post-form">
                             <p>
-                                <textarea value={props.postsData.newPostText} onChange={onPostChange} placeholder="Ваше сообщение" cols="50" rows="4" />
+                                <textarea value={props.postsData.newPostText}
+                                    onChange={onPostChange}
+                                    placeholder="Ваше сообщение"
+                                    cols="50" rows="4" />
                             </p>
                             <button onClick={onSendPostClick}
-                                    className="btn btn-outline-primary">Написать
+                                className="btn btn-outline-primary">Написать
                             </button>
                         </div>
                     </div>

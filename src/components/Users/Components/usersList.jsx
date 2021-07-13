@@ -1,4 +1,5 @@
 import u from '../static/users.module.css';
+import { NavLink } from "react-router-dom";
 
 let defaultImageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvts5aHBstDkR8PigS4RmZkbZy78zpZoSuOw&usqp=CAU";
 
@@ -21,10 +22,12 @@ let UsersList = (props) => {
                 <div className="container">
                     <ul className="usersList">
                         <li className={u.usersList}>
-                            <img
-                                src={users.photos.large != null ? u.photos.small : defaultImageURL}
-                                alt="icon" />
-                            <h4 className={u.userName}>{users.name}</h4>
+                            <NavLink className={u.link} to={'/profile/' + users.id}>
+                                <img
+                                    src={users.photos.large != null ? u.photos.small : defaultImageURL}
+                                    alt="icon" />
+                                <h4 className={u.userName}>{users.name}</h4>
+                            </NavLink>
                             <p className={u.userText}>{users.status}</p>
                             <div>
                                 {users.followed

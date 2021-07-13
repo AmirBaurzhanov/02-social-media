@@ -3,7 +3,7 @@ import { follow, setUsers, unFollow, changeCurrentPage, toggleFetching } from ".
 import React from "react";
 import * as axios from 'axios';
 import UsersList from "./usersList";
-import loader from '../static/loader.svg'
+import Preloader from "../../commons/preloader";
 
 class UsersAPIComponent extends React.Component {
     componentDidMount() {
@@ -28,9 +28,7 @@ class UsersAPIComponent extends React.Component {
     render() {
         return <>
             {this.props.isFetching ?
-                <div>
-                    <img src={loader} />
-                </div> : null}
+                <Preloader /> : null}
             <UsersList users={this.props.users}
                 follow={this.props.follow}
                 unFollow={this.props.unFollow}
