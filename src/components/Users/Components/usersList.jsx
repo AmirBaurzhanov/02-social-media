@@ -1,4 +1,5 @@
 import u from '../static/users.module.css';
+import * as axios from 'axios';
 import { NavLink } from "react-router-dom";
 
 let defaultImageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvts5aHBstDkR8PigS4RmZkbZy78zpZoSuOw&usqp=CAU";
@@ -32,10 +33,30 @@ let UsersList = (props) => {
                             <div>
                                 {users.followed
                                     ? <button className="btn btn-primary mt-4" onClick={() => {
-                                        props.unFollow(users.id)
+                                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${users.id}`, {}, {
+                                            withCredentials: true,
+                                            headers: {
+                                                "API-KEY": "918a0841-576f-424d-8ff5-939f6e69dc6e"
+                                            }
+                                        })
+                                            .then(response => {
+                                                if (response.data.resultCode == 0) {
+                                                    props.unFollow(users.id);
+                                                }
+                                            });
                                     }}>Unfollow</button>
                                     : <button className="btn btn-primary mt-4" onClick={() => {
-                                        props.follow(users.id)
+                                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${users.id}`, {}, {
+                                            withCredentials: true,
+                                            headers: {
+                                                "API-KEY": "918a0841-576f-424d-8ff5-939f6e69dc6e"
+                                            }
+                                        })
+                                            .then(response => {
+                                                if (response.data.resultCode == 0) {
+                                                    props.follow(users.id);
+                                                }
+                                            });
                                     }}>Follow</button>}
                             </div>
                             {/* <div className={u.location}>

@@ -1,13 +1,15 @@
 import u from "../static/user-post.module.css";
 import React from "react";
 
+let defaultImageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvts5aHBstDkR8PigS4RmZkbZy78zpZoSuOw&usqp=CAU";
+
 const Post = (props) => {
     return (
         <div>
             <div className={u.info}>
                 <div className={u.avatar}>
                     <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQr-j7o2xWexDTosmQob_PpHPn-F9Bjw5gVQ&usqp=CAU"
+                        src={defaultImageURL}
                         alt="logo" />
                 </div>
                 <div className={u.name}>
