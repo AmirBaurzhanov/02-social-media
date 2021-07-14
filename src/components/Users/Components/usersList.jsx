@@ -1,6 +1,5 @@
 import u from '../static/users.module.css';
-import { NavLink } from "react-router-dom";
-import { usersPageAPI } from "../../../api/api";
+import { NavLink } from "react-router-dom"; 
 
 let defaultImageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvts5aHBstDkR8PigS4RmZkbZy78zpZoSuOw&usqp=CAU";
 
@@ -31,30 +30,15 @@ let UsersList = (props) => {
                             </NavLink>
                             <p className={u.userText}>{users.status}</p>
                             <div>
-                            {users.followed
-                            ? <button disabled={props.followingInProgress.some(id => id === users.id)} className="btn btn-primary" onClick={() => {
-                                props.toggleFollowingProgress(true, users.id);
-                                usersPageAPI.unFollow(users.id).then(response => {
-                                        if (response.resultCode === 0) {
-                                            props.unFollow(users.id);
-                                        }
-                                        props.toggleFollowingProgress(false,users.id);
-                                    });
-
-
-
-                            }}>Unfollow</button>
-                            : <button disabled={props.followingInProgress.some(id => id === users.id)} className="btn btn-primary" onClick={() => {
-                                props.toggleFollowingProgress(true, users.id);
-                                usersPageAPI.follow(users.id).then(response => {
-                                        if (response.resultCode === 0) {
-                                            props.follow(users.id);
-                                        }
-                                        props.toggleFollowingProgress(false, users.id);
-                                    });
-
-
-                            }}>Follow</button>}
+                                {users.followed
+                                    ? <button disabled={props.followingInProgress.some(id => id === users.id)}
+                                        className="btn btn-primary mt-4" onClick={() => {
+                                            props.followOrUnFollowThunkCreator('UNFOLLOW', users.id);
+                                        }}>Unfollow</button>
+                                    : <button disabled={props.followingInProgress.some(id => id === users.id)}
+                                        className="btn btn-primary mt-4" onClick={() => {
+                                            props.followOrUnFollowThunkCreator('FOLLOW', users.id);
+                                        }}>Follow</button>}
                             </div>
                             {/* <div className={u.location}>
                     <ul>

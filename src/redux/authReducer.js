@@ -1,3 +1,5 @@
+import { headerPageAPI } from "../api/api";
+
 const SET_USER_DATA = 'SET-USER-DATA'
 
 let initialState = {
@@ -23,5 +25,15 @@ const authReducer = (state = initialState, action) => {
 }
 
 export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, data: { userId, email, login } })
+
+export const authThunkCreator = () => {
+    return (dispatch) => {
+        headerPageAPI.headerContainer()
+            .then(response => {
+                let { id, email, login } = response.data;
+                dispatch(setAuthUserData(id, email, login))
+            })
+    }
+}
 
 export default authReducer;
