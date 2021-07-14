@@ -1,32 +1,26 @@
 import { connect } from "react-redux";
 import { follow, setUsers, unFollow, changeCurrentPage, toggleFetching } from "../../../redux/usersReducer";
 import React from "react";
-import * as axios from 'axios';
 import UsersList from "./usersList";
 import Preloader from "../../commons/preloader";
+import { usersPageAPI } from "../../../api/api";
 
 class UsersAPIComponent extends React.Component {
     componentDidMount() {
         this.props.toggleFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        })
-            .then(response => {
-                this.props.toggleFetching(false)
-                this.props.setUsers(response.data.items);
-            });
+        usersPageAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
+            this.props.toggleFetching(false)
+            this.props.setUsers(response.items);
+        });
     }
 
     onPageChanged = (pages) => {
         this.props.changeCurrentPage(pages)
         this.props.toggleFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pages}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        })
-            .then(response => {
-                this.props.toggleFetching(false)
-                this.props.setUsers(response.data.items);
-            });
+        usersPageAPI.pageChanged(pages, this.props.pageSize).then(response => {
+            this.props.toggleFetching(false)
+            this.props.setUsers(response.items);
+        });
     }
 
     render() {
@@ -57,13 +51,11 @@ let mapStateToProps = (state) => {
 
 export default connect
     (
-        mapStateToProps,
-        {
-            follow,
-            unFollow,
-            setUsers,
-            changeCurrentPage,
-            toggleFetching,
-        }
-    )
+        mapStateToProps, {
+        follow,
+        unFollow,
+        setUsers,
+        changeCurrentPage,
+        toggleFetching,
+    })
     (UsersAPIComponent);
