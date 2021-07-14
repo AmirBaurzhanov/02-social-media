@@ -31,21 +31,30 @@ let UsersList = (props) => {
                             </NavLink>
                             <p className={u.userText}>{users.status}</p>
                             <div>
-                                {users.followed
-                                    ? <button className="btn btn-primary mt-4" onClick={() => {
-                                        usersPageAPI.unFollow(users).then(response => {
-                                            if (response.resultCode == 0) {
-                                                props.unFollow(users.id);
-                                            }
-                                        });
-                                    }}>Unfollow</button>
-                                    : <button className="btn btn-primary mt-4" onClick={() => {
-                                        usersPageAPI.follow(users).then(response => {
-                                            if (response.resultCode == 0) {
-                                                props.follow(users.id);
-                                            }
-                                        })
-                                    }}>Follow</button>}
+                            {users.followed
+                            ? <button disabled={props.followingInProgress.some(id => id === users.id)} className="btn btn-primary" onClick={() => {
+                                props.toggleFollowingProgress(true, users.id);
+                                usersPageAPI.unFollow(users.id).then(response => {
+                                        if (response.resultCode === 0) {
+                                            props.unFollow(users.id);
+                                        }
+                                        props.toggleFollowingProgress(false,users.id);
+                                    });
+
+
+
+                            }}>Unfollow</button>
+                            : <button disabled={props.followingInProgress.some(id => id === users.id)} className="btn btn-primary" onClick={() => {
+                                props.toggleFollowingProgress(true, users.id);
+                                usersPageAPI.follow(users.id).then(response => {
+                                        if (response.resultCode === 0) {
+                                            props.follow(users.id);
+                                        }
+                                        props.toggleFollowingProgress(false, users.id);
+                                    });
+
+
+                            }}>Follow</button>}
                             </div>
                             {/* <div className={u.location}>
                     <ul>

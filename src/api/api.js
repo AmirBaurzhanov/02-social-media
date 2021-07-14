@@ -17,9 +17,9 @@ export const usersPageAPI = {
         return instance.get(`users?page=${pages}&count=${pageSize}`).then(response => response.data)
     },
     // Users List
-    follow: (users) => instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${users.id}`)
+    follow: (usersId) => instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${usersId}`)
         .then(response => response.data),
-    unFollow: (users) => instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${users.id}`)
+    unFollow: (usersId) => instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${usersId}`)
         .then(response => response.data)
 }
 

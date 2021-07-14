@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { follow, setUsers, unFollow, changeCurrentPage, toggleFetching } from "../../../redux/usersReducer";
+import { follow, setUsers, unFollow, changeCurrentPage, toggleFetching, toggleFollowingProgress } from "../../../redux/usersReducer";
 import React from "react";
 import UsersList from "./usersList";
 import Preloader from "../../commons/preloader";
@@ -34,28 +34,23 @@ class UsersAPIComponent extends React.Component {
                 currentPage={this.props.currentPage}
                 pageSize={this.props.pageSize}
                 onPageChanged={this.onPageChanged}
+                toggleFollowingProgress={this.props.toggleFollowingProgress}
+                followingInProgress={this.props.followingInProgress}
             />
         </>
     }
 }
-
 let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
+
     }
 };
 
-export default connect
-    (
-        mapStateToProps, {
-        follow,
-        unFollow,
-        setUsers,
-        changeCurrentPage,
-        toggleFetching,
-    })
-    (UsersAPIComponent);
+export default connect(mapStateToProps,
+    {follow, unFollow, setUsers, changeCurrentPage, toggleFetching, toggleFollowingProgress})(UsersAPIComponent);
