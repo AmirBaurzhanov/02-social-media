@@ -5,7 +5,8 @@ import Messages from "./Messages";
 
 let mapStateToProps = (state) => {
     return {
-        dialogsData: state.dialogsPage
+        dialogsData: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 
@@ -20,6 +21,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const dialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Messages);
- 
-export default dialogsContainer;
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Messages)

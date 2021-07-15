@@ -1,5 +1,6 @@
 import u from "../static/user-post.module.css";
 import React from "react";
+import { Redirect } from "react-router-dom";
 
 let defaultImageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvts5aHBstDkR8PigS4RmZkbZy78zpZoSuOw&usqp=CAU";
 
@@ -30,7 +31,9 @@ const Post = (props) => {
 }
 
 const PostInfo = (props) => {
-
+    if (props.isAuth === false) {
+        return <Redirect to="login/" />
+    }
     let posts = props.postsData.postsData
         .map((posts) =>
             <Post name={posts.name} key={posts.id} text={posts.text} likeCount={posts.likeCount} />

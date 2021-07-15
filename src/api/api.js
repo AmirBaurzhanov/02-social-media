@@ -17,21 +17,21 @@ export const usersPageAPI = {
         return instance.get(`users?page=${pages}&count=${pageSize}`).then(response => response.data)
     },
     // Users List
-    follow: (usersId) => instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${usersId}`)
+    follow: (usersId) => instance.post(`follow/${usersId}`)
         .then(response => response.data),
-    unFollow: (usersId) => instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${usersId}`)
+    unFollow: (usersId) => instance.delete(`follow/${usersId}`)
         .then(response => response.data)
 }
 
 
 export const profilePageAPI = {
-    setUsers: (userId) => instance.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+    setUsers: (userId) => instance.get(`profile/${userId}`)
         .then(response => response.data)
 
 }
 
 export const headerPageAPI = {
-    headerContainer: () => instance.get(`https://social-network.samuraijs.com/api/1.0/auth/me`)
+    headerContainer: () => instance.get(`auth/me`)
         .then(response => response.data)
 
 }

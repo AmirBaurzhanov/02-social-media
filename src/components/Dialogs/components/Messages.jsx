@@ -1,6 +1,7 @@
 import d from '../static/messages.module.css'
 import Dialog from './Dialog'
 import React from "react";
+import { Redirect } from 'react-router-dom';
 
 const Message = (props) => {
     return (
@@ -9,6 +10,9 @@ const Message = (props) => {
 }
 
 const Messages = (props) => {
+    if (props.isAuth === false) {
+        return <Redirect to="login/" />
+    }
     let messageElements = props.dialogsData.messagesData
         .map((message) =>
             <Message message={message.message} key={message.id}/>

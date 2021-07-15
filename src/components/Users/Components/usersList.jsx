@@ -1,5 +1,5 @@
 import u from '../static/users.module.css';
-import { NavLink } from "react-router-dom"; 
+import { NavLink, Redirect } from "react-router-dom";
 
 let defaultImageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvts5aHBstDkR8PigS4RmZkbZy78zpZoSuOw&usqp=CAU";
 
@@ -9,6 +9,9 @@ let UsersList = (props) => {
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
+    }
+    if (props.isAuth === false) {
+        return <Redirect to="login/" />
     }
     return <div className="container">
         <h3 className="text-center mb-4">Users</h3>

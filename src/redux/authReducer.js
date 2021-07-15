@@ -13,6 +13,7 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
+
             return {
                 ...state,
                 ...action.data,
@@ -20,7 +21,7 @@ const authReducer = (state = initialState, action) => {
             }
 
         default:
-            return { ...state }
+            return state;
     }
 }
 
@@ -30,8 +31,10 @@ export const authThunkCreator = () => {
     return (dispatch) => {
         headerPageAPI.headerContainer()
             .then(response => {
-                let { id, email, login } = response.data;
-                dispatch(setAuthUserData(id, email, login))
+                if (response.resultCode === 0) {
+                    let { id, email, login } = response.data;
+                    dispatch(setAuthUserData(id, email, login))
+                }
             })
     }
 }
