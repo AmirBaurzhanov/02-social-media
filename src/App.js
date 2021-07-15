@@ -4,7 +4,7 @@ import Navbar from "./components/Header/navbar";
 import ProfileContainer from './components/Posts/PostsContainer';
 import UsersAPIComponent from './components/Users/Components/usersListContainer';
 import HeaderContainer from './components/Header/headerContainer';
-import {DialogsContainer} from './components/Dialogs/components/MessagesContainer'
+import DialogsContainer from './components/Dialogs/components/MessagesContainer'
 import Login from './Login/Login';
 
 

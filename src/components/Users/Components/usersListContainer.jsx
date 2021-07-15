@@ -3,6 +3,9 @@ import { follow, unFollow, toggleFollowingProgress, getUsersThunkCreator, follow
 import React from "react";
 import UsersList from "./usersList";
 import Preloader from "../../commons/preloader";
+import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
+import { compose } from "redux";
+
 
 class UsersAPIComponent extends React.Component {
     componentDidMount() {
@@ -34,6 +37,7 @@ class UsersAPIComponent extends React.Component {
         </>
     }
 }
+
 let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
@@ -42,14 +46,15 @@ let mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress,
-        isAuth: state.auth.isAuth,
     }
 };
 
-export default connect(mapStateToProps, {
+let Compose = compose(withAuthRedirect, connect(mapStateToProps, {
     follow,
     unFollow,
     toggleFollowingProgress,
     getUsersThunkCreator,
     followOrUnFollowThunkCreator
-})(UsersAPIComponent);
+}))(UsersAPIComponent);
+
+export default Compose;
