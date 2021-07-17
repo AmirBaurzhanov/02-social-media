@@ -32,6 +32,6 @@ let mapStateToProps = (state) => ({
 })
 
 
-let Compose = compose( connect(mapStateToProps, { setUserProfile, profilePageThunkCreator }),withAuthRedirect, withRouter )(ProfileContainer)
+let Compose = compose( connect(mapStateToProps, { setUserProfile, profilePageThunkCreator }), withRouter, withAuthRedirect )(ProfileContainer)
 
 export default Compose;

@@ -15,7 +15,7 @@ const App = () => {
                 <HeaderContainer />
                 <Navbar />
                 <div>
-                    <Route exact path='/messages' render={() => <DialogsContainer />} />
+                    <Route path='/messages' render={() => <DialogsContainer />} />
                     <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
                     <Route path='/users' render={() => <UsersAPIComponent />} />
                     <Route path='/login' render={() => <Login />} />
