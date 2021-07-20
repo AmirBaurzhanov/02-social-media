@@ -1,6 +1,7 @@
-import { headerPageAPI } from "../api/api";
+import { AuthAPI, headerPageAPI } from "../api/api";
 
-const SET_USER_DATA = 'SET-USER-DATA'
+const SET_USER_DATA = 'SET-USER-DATA';
+const TOGGLE_IS_AUTH = 'TOGGLE-IS-AUTH';
 
 let initialState = {
     userId: null,
@@ -13,10 +14,15 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
-
             return {
                 ...state,
                 ...action.data,
+                isAuth: true
+            }
+
+        case TOGGLE_IS_AUTH:
+            return {
+                ...state,
                 isAuth: true
             }
 
@@ -26,6 +32,7 @@ const authReducer = (state = initialState, action) => {
 }
 
 export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, data: { userId, email, login } })
+export const toggleIsAuth = (isAuth) => ({ type: TOGGLE_IS_AUTH, isAuth })
 
 export const authThunkCreator = () => {
     return (dispatch) => {
@@ -38,5 +45,6 @@ export const authThunkCreator = () => {
             })
     }
 }
+
 
 export default authReducer;

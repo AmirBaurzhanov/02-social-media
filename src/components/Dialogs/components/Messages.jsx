@@ -1,6 +1,7 @@
 import d from '../static/messages.module.css'
 import Dialog from './Dialog'
 import React from "react";
+import AddMessageFormRedux from './form';
 
 const Message = (props) => {
     return (
@@ -19,13 +20,8 @@ const Messages = (props) => {
             <Dialog name={dialog.name} key={dialog.id} id={dialog.id}/>
         );
 
-    let onSendMessageClick = () => {
-        props.onSendMessageClick()
-    }
-
-    let onNewMessageChange = (e) => {
-        let body = e.target.value;
-        props.onNewMessageChange(body)
+    let onNewMessageChange = (values) => {
+        props.onSendMessageClick(values.textarea)
     }
     return (
         <div className="wrapper">
@@ -38,8 +34,7 @@ const Messages = (props) => {
                 </div>
             </div>
             <div className={d.chat}>
-                <textarea value={props.dialogsData.newMessageText} name="textarea" onChange={onNewMessageChange} cols="90" rows="5" placeholder="Введите сообщение"/> <br/>
-                <button onClick={onSendMessageClick} className="btn btn-outline-primary text-center">Отправить</button>
+                <AddMessageFormRedux onSubmit={onNewMessageChange}/>
             </div>
         </div>
     )

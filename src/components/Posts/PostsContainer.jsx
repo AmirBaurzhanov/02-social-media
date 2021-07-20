@@ -21,7 +21,7 @@ class ProfileContainer extends React.Component {
     render() {
         return (
             <div>
-                <Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
+                <Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />
             </div>
         )
     }
@@ -30,7 +30,7 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
 })
 
 

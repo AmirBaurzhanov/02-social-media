@@ -9,7 +9,7 @@ const Header = (props) => {
             <header className={h.header}>
                 <div className="container">
                     <div className={h.inner}>
-                        <div className={h.title}><span className={h.letter}>V</span>Reacte</div>
+                        <div className={h.title}><NavLink to="/" className={h.NavLink}><span className={h.letter}>V</span>Reacte</NavLink></div>
                     </div>
                     <div className={h.authBlock}>
                         {props.isAuth ? props.login : <NavLink to={'/login'} className={h.NavLink} >Login</NavLink>}

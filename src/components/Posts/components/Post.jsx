@@ -1,5 +1,6 @@
 import u from "../static/user-post.module.css";
 import React from "react";
+import AddPostFormRedux from "./form";
 
 let defaultImageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvts5aHBstDkR8PigS4RmZkbZy78zpZoSuOw&usqp=CAU";
 
@@ -34,13 +35,8 @@ const PostInfo = (props) => {
         .map((posts) =>
             <Post name={posts.name} key={posts.id} text={posts.text} likeCount={posts.likeCount} />
         );
-    let onSendPostClick = () => {
-        props.addPost()
-    }
-
-    let onPostChange = (e) => {
-        let body = e.target.value;
-        props.updateNewPostText(body)
+    let onSendPostClick = (values) => {
+        props.addPost(values.textarea)
     }
     return (
         <div>
@@ -51,15 +47,7 @@ const PostInfo = (props) => {
                             My posts
                         </h1>
                         <div className="post-form">
-                            <p>
-                                <textarea value={props.postsData.newPostText}
-                                    onChange={onPostChange}
-                                    placeholder="Ваше сообщение"
-                                    cols="50" rows="4" />
-                            </p>
-                            <button onClick={onSendPostClick}
-                                className="btn btn-outline-primary">Написать
-                            </button>
+                            <AddPostFormRedux onSubmit={onSendPostClick}/>
                         </div>
                     </div>
                 </div>
