@@ -1,8 +1,10 @@
+import { connect } from "react-redux";
+import { loginThunkCreator } from "../../redux/authReducer"
 import LoginReduxForm from "./Components/LoginForm"
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        console.log(formData)
+        props.loginThunkCreator(formData.password, formData.login, formData.rememberMe)
     }
     return (
         <div className="container">
@@ -12,4 +14,6 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+const LoginCont = connect(null, {loginThunkCreator})(Login)
+
+export default LoginCont;

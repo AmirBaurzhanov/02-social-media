@@ -1,17 +1,16 @@
 import { Field, reduxForm } from "redux-form"
+import requiredField from "../../../utils/validators/valid";
+import { TextArea } from "../../commons/FormsControl";
 
 
 const form = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <p>
-                <Field name={"textarea"} component={"textarea"}
-                    placeholder="Ваше сообщение"
+                <Field validate={requiredField} name={"textarea"} component={TextArea}
+                    placeholder="Your post"
                     cols="50" rows="4" />
             </p>
-            <button
-                className="btn btn-outline-primary">Написать
-            </button>
         </form>
     )
 }

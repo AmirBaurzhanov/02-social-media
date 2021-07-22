@@ -6,6 +6,7 @@ import UsersAPIComponent from './components/Users/Components/usersListContainer'
 import HeaderContainer from './components/Header/headerContainer';
 import DialogsContainer from './components/Dialogs/components/MessagesContainer'
 import Login from './components/Login/Login';
+import LogoutCont from './components/Login/Logout';
 
 
 const App = () => {
@@ -19,10 +20,10 @@ const App = () => {
                     <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
                     <Route path='/users' render={() => <UsersAPIComponent />} />
                     <Route path='/login' render={() => <Login />} />
+                    <Route path='/logout' render={() => <LogoutCont />} />
                 </div>
             </div>
         </BrowserRouter>
-    );
+    )
 }
-
 export default App;

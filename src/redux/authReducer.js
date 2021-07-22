@@ -1,7 +1,7 @@
+import { stopSubmit } from "redux-form";
 import { AuthAPI, headerPageAPI } from "../api/api";
 
 const SET_USER_DATA = 'SET-USER-DATA';
-const TOGGLE_IS_AUTH = 'TOGGLE-IS-AUTH';
 
 let initialState = {
     userId: null,
@@ -17,13 +17,6 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.data,
-                isAuth: true
-            }
-
-        case TOGGLE_IS_AUTH:
-            return {
-                ...state,
-                isAuth: true
             }
 
         default:
@@ -31,8 +24,7 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, data: { userId, email, login } })
-export const toggleIsAuth = (isAuth) => ({ type: TOGGLE_IS_AUTH, isAuth })
+export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, data: { userId, email, login, isAuth } })
 
 export const authThunkCreator = () => {
     return (dispatch) => {
@@ -40,10 +32,31 @@ export const authThunkCreator = () => {
             .then(response => {
                 if (response.resultCode === 0) {
                     let { id, email, login } = response.data;
-                    dispatch(setAuthUserData(id, email, login))
+                    dispatch(setAuthUserData(id, email, login, true))
                 }
             })
     }
+}
+
+export const loginThunkCreator = (email, password, rememberMe) => (dispatch) => {
+
+    AuthAPI.login(email, password, rememberMe).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(authThunkCreator());
+        } else {
+            let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+                dispatch(stopSubmit("login", {_error: message}));
+        }
+    })
+}
+
+export const logoutThunkCreator = () => (dispatch) => {
+    AuthAPI.logout().then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(authThunkCreator(null, null, null, false));
+            window.location.reload()
+        }
+    })
 }
 
 
