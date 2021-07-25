@@ -6,11 +6,9 @@ import { TextArea } from "../../commons/FormsControl";
 const form = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <p>
-                <Field validate={requiredField} name={"textarea"} component={TextArea}
-                    placeholder="Your post"
-                    cols="50" rows="4" />
-            </p>
+            <Field validate={requiredField} name={"textarea"} component={TextArea}
+                placeholder="Your post"
+                cols="50" rows="4" />
         </form>
     )
 }
