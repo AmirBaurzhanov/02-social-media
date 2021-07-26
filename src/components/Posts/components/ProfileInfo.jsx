@@ -1,6 +1,6 @@
 import Preloader from '../../commons/preloader';
 import p from '../static/myPost.module.css';
-import ProfileStatus from './status';
+import ProfileStatusWithHooks from './statusWithHooks';
 
 let defaultImageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvts5aHBstDkR8PigS4RmZkbZy78zpZoSuOw&usqp=CAU";
 
@@ -11,7 +11,7 @@ const Profile = (props) => {
             <ul className={p.list}>
                 <li className={p.item}>{props.lookingForAJob}</li>
                 <li className={p.item}>{props.howYouSearchJob}</li>
-                <li className={p.item}><ProfileStatus status={props.status} updateStatus={props.updateStatus}/></li>
+                <li className={p.item}><ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/></li>
             </ul>
         </div>
     )
