@@ -83,32 +83,29 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
     }
 }
 
-export const followOrUnFollowThunkCreator = (type, usersId) => {
-    return (dispatch) => {
-        if (type === UNFOLLOW) {
-            dispatch(toggleFollowingProgress(true, usersId))
-                usersPageAPI.unFollow(usersId).then(response => {
-                    if (response.resultCode === 0) {
-                        dispatch(unFollow(usersId))
-                    } else if (response.resultCode === 1) {
-                        alert(response.messages)
-                    }
-                    dispatch(toggleFollowingProgress(false, usersId))
-                })
-            } else if (type === FOLLOW) {
-                dispatch(toggleFollowingProgress(true, usersId))
-                usersPageAPI.follow(usersId).then(response => {
-                    if (response.resultCode === 0) {
-                        dispatch(follow(usersId))
-                    } else if (response.resultCode === 1) {
-                        alert(response.messages)
-                    }
-                    dispatch(toggleFollowingProgress(false, usersId))
-                })
-            }
-
+export const followOrUnFollowThunkCreator = (type, usersId) => async (dispatch) => {
+    if (type === UNFOLLOW) {
+        dispatch(toggleFollowingProgress(true, usersId))
+        let response = await usersPageAPI.unFollow(usersId)
+        if (response.resultCode === 0) {
+            dispatch(unFollow(usersId))
+        } else if (response.resultCode === 1) {
+            alert(response.messages)
+        }
+        dispatch(toggleFollowingProgress(false, usersId))
+    } else if (type === FOLLOW) {
+        dispatch(toggleFollowingProgress(true, usersId))
+        let response = await usersPageAPI.follow(usersId)
+        if (response.resultCode === 0) {
+            dispatch(follow(usersId))
+        } else if (response.resultCode === 1) {
+            alert(response.messages)
+        }
+        dispatch(toggleFollowingProgress(false, usersId))
     }
+
 }
+
 
 
 export default usersReducer;

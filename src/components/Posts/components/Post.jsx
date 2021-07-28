@@ -30,12 +30,12 @@ const Post = (props) => {
     )
 }
 
-const PostInfo = (props) => {
+const PostInfo = React.memo(props => {
     let posts = props.postsData.postsData
-        .map((posts) =>
+        .map(posts =>
             <Post name={posts.name} key={posts.id} text={posts.text} likeCount={posts.likeCount} />
         );
-    let onSendPostClick = (values) => {
+    let onSendPostClick = values => {
         props.addPost(values.textarea)
     }
     return (
@@ -47,7 +47,7 @@ const PostInfo = (props) => {
                             My posts
                         </h1>
                         <div className="post-form">
-                            <AddPostFormRedux onSubmit={onSendPostClick}/>
+                            <AddPostFormRedux onSubmit={onSendPostClick} />
                         </div>
                     </div>
                 </div>
@@ -59,5 +59,5 @@ const PostInfo = (props) => {
             </section>
         </div>
     )
-}
+})
 export default PostInfo;
