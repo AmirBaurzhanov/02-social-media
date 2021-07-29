@@ -21,6 +21,13 @@ const ProfileInfo = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
+
+    const mainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    }
+
     return (
         <div>
             <section className={p.section}>
@@ -30,7 +37,9 @@ const ProfileInfo = (props) => {
                             src={props.profile.photos.large != null ? props.profile.photos.small : defaultImageURL}
                             alt="logo" />
                         <br />
-                        <button className="btn btn-outline-primary mt-1">Изменить</button>
+                        <div className="pt-1">
+                            {props.isOwner && <input type={"file"} onChange={mainPhotoSelected} />}
+                        </div>
                         <Profile lookingForAJob={`Ищу работу: ${props.lookingForAJob ? 'Да' : 'Нет'}`}
                             name={props.profile.fullName}
                             status={props.status}

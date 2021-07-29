@@ -3,6 +3,7 @@ import { ProfileAPI, profilePageAPI } from "../api/api";
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-PROFILE';
 const SET_STATUS = 'SET-STATUS';
+const SET_PHOTO = 'SET-PHOTO';
 
 
 let initialState = {
@@ -36,6 +37,10 @@ const profileReducer = (state = initialState, action) => {
             return { ...state, status: action.status }
         }
 
+        case SET_PHOTO: {
+            return { ...state, profile: {...state.profile, photos: action.image} }
+        }
+
         default:
             return state
     }
@@ -44,28 +49,31 @@ const profileReducer = (state = initialState, action) => {
 export const addPost = (text) => ({ type: ADD_POST, text })
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 export const setStatus = (status) => ({ type: SET_STATUS, status: status })
+export const setPhoto = (image) => ({ type: SET_PHOTO, image: image })
 
 export const profilePageThunkCreator = (userId) => {
-    return (dispatch) => {
-        profilePageAPI.setUsers(userId)
-            .then(response => {
-                dispatch(setUserProfile(response))
-            });
+    return async (dispatch) => {
+        let response = await profilePageAPI.setUsers(userId)
+        dispatch(setUserProfile(response))
     }
 }
-export const getStatus = (userId) => (dispatch) => {
-    ProfileAPI.getStatus(userId)
-        .then(response => {
-            dispatch(setStatus(response.data));
-        });
+export const getStatus = (userId) => async (dispatch) => {
+    let response = await ProfileAPI.getStatus(userId)
+    dispatch(setStatus(response.data));
 }
 
-export const updateStatus = (status) => (dispatch) => {
-    ProfileAPI.updateStatus(status)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setStatus(status));
-            }
-        });
+export const updateStatus = (status) => async (dispatch) => {
+    let response = await ProfileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(setStatus(status));
+    }
 }
+
+export const savePhoto = (image) => async (dispatch) => {
+    let response = await ProfileAPI.setPhoto(image)
+    if (response.data.resultCode === 0) {
+        dispatch(setPhoto(image))
+    }
+}
+
 export default profileReducer;
